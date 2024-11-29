@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johan Clima App</title>
+    <link rel="icon" type="image/clima" href="{{ url_for('static', filename='images/Imgan.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: yellow;
+            font-family: Arial, sans-serif;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>🌞 Weather App 🌧️</h1>
+        <form method="POST">
+            <input type="text" name="city" class="form-control" placeholder="Escribe la ciudad" required>
+            <button type="submit" class="btn btn-primary mt-3">Buscar Clima</button>
+        </form>
+        {% if weather_data %}
+            <div class="mt-5">
+                {% if weather_data.error %}
+                    <h4>{{ weather_data.error }}</h4>
+                {% else %}
+                    <h2>{{ weather_data.city }}</h2>
+                    <p>Temperatura: {{ weather_data.temperature }}°C</p>
+                    <p>Descripción: {{ weather_data.description }}</p>
+                    <p>Latitud: {{ weather_data.latitude }}</p>
+                    <p>Longitud: {{ weather_data.longitude }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    <footer class="bg-info text-center text-lg-start fixed-bottom">
+        <div class="text-center p-3" style="background-color:green">
+            2024 Copyright:
+            <a href="cv.html" target="_blank">Johan Castro Celi</a>
+        </div>
+    </footer>
+</body>
+</html>
